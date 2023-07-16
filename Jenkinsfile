@@ -8,7 +8,7 @@ pipeline {
                 steps {  sh 'mvn test' }
 
                 }
-            }
+            
             stage('run') {
                 steps {  sh 'mvn clean spring-boot:run &;curl http://localhost:8080/docs'  }
             }
@@ -29,9 +29,10 @@ pipeline {
             }
         }
 	
-                post {
+        post {
                     always {
                         junit 'target/surefire-reports/*.xml'
                         archiveArtifacts 'target/*.jar'
                     }
+        }
 }
