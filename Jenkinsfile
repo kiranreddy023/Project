@@ -19,9 +19,9 @@ pipeline {
             stage('docker') {
                 steps {
                         dir("frontend") {   sh 'docker build -t frontend:latest .'   }
-                }
+                //}
                 
-                steps {
+                //steps {
                     dir("backend") { sh 'docker build -t backend:latest .' }
                 }
             }
