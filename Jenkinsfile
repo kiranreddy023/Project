@@ -6,11 +6,7 @@ pipeline {
             }
             stage('test') {
                 steps {  sh 'mvn test' }
-                post {
-                    always {
-                        junit 'target/surefire-reports/*.xml'
-                        archiveArtifacts 'target/*.jar'
-                    }
+
                 }
             }
             stage('run') {
@@ -32,4 +28,10 @@ pipeline {
                 }
             }
         }
+	
+                post {
+                    always {
+                        junit 'target/surefire-reports/*.xml'
+                        archiveArtifacts 'target/*.jar'
+                    }
 }
