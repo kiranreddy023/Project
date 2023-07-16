@@ -10,7 +10,7 @@ pipeline {
                 }
             
             stage('run') {
-                steps {  sh 'mvn clean spring-boot:run &;curl http://localhost:8080/docs'  }
+                steps {  sh 'mvn clean spring-boot:run & ;; curl http://localhost:8080/docs'  }
             }
             stage('docker') {
                 steps {
