@@ -1,10 +1,10 @@
 pipeline {
         agent any
         stages {
-            stage(build) {
+            stage('build') {
                 steps {   sh 'mvn clean install -DskipTests'  }
             }
-            stage(test) {
+            stage('test') {
                 steps {  sh 'mvn test' }
                 post {
                     always {
@@ -13,10 +13,10 @@ pipeline {
                     }
                 }
             }
-            stage(run) {
+            stage('run') {
                 steps {  sh 'mvn clean spring-boot:run &;curl http://localhost:8080/docs'  }
             }
-            stage(docker) {
+            stage('docker') {
                 steps {
                         dir("frontend") {   sh 'docker build -t frontend:latest .'   }
                 }
