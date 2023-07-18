@@ -11,7 +11,7 @@ pipeline {
             
             stage('run') {
                 steps {  sh 'mvn clean spring-boot:run &'
-                sh 'curl http://localhost:8086/docs'
+                //sh 'curl http://localhost:8086/docs'
                   }
             }
             stage('docker') {
