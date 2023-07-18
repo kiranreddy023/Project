@@ -11,7 +11,7 @@ pipeline {
             
             stage('run') {
                 steps {  sh 'mvn clean spring-boot:run &'
-                sh 'curl http://localhost:8080/docs'
+                sh 'curl http://localhost:8086/docs'
                   }
             }
             stage('docker') {
@@ -25,8 +25,8 @@ pipeline {
             }
             stage("docker run") {
                 steps {
-                    sh 'docker run -p 8085:8080 -d backend:latest'
-                    sh 'docker run -p 8084:8080 -d frontend:latest'
+                    sh 'docker run -p 9901:8086 -d backend:latest'
+                    sh 'docker run -p 9902:8085 -d frontend:latest'
                 }
             }
         }
