@@ -27,11 +27,12 @@ pipeline {
                         }
                 }
             }
-            stage("docker run") {
+            stage("docker remove") {
                 steps {
                     sh 'docker rm -f backend'
                     sh 'docker rm -f frontend'
                 }
+            }
             stage("docker run") {
                 steps {
                     sh 'docker run -p 9991:8086 -d --name backend backend:latest'
