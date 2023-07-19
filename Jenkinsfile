@@ -29,14 +29,19 @@ pipeline {
             }
             stage("docker run") {
                 steps {
-                    sh 'docker run -p 9901:8086 -d backend:latest'
-                    sh 'docker run -p 9902:8085 -d frontend:latest'
+                    sh 'docker rm -f backend'
+                    sh 'docker rm -f frontend'
+                }
+            stage("docker run") {
+                steps {
+                    sh 'docker run -p 9991:8086 -d --name backend backend:latest'
+                    sh 'docker run -p 9992:8085 -d --name frontend frontend:latest'
                 }
             }
             stage("docker deploy") {
                 steps {
-                    sh 'curl http://localhost:9901/docs'
-                    sh 'curl http://localhost:9902'
+                    sh 'curl http://localhost:9991/docs'
+                    sh 'curl http://localhost:9992'
                 }
             }
         }
