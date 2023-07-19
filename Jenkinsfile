@@ -29,8 +29,8 @@ pipeline {
             }
             stage("docker remove") {
                 steps {
-                    sh "sudo kill -9 $(docker top backend | awk 'NR==2 {print $2}')"
-                    sh "sudo kill -9 $(docker top backend | awk 'NR==2 {print $2}')"
+                    sh "sudo kill -9 \$(docker top backend | awk 'NR==2 {print \$2}')"
+                    sh "sudo kill -9 \$(docker top backend | awk 'NR==2 {print \$2}')"
                 }
             }
             stage("docker run") {
