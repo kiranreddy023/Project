@@ -2,6 +2,7 @@ pipeline{
     agent any
     tools {
         maven 'maven-3.6.3'
+        
     }
     stages{
         stage('maven test'){
@@ -17,7 +18,7 @@ pipeline{
         }
         stage("sonarqube build"){
             steps{
-                withSonarQubeEnv('kiran') {
+                withSonarQubeEnv('kiransonarqube') {
                     sh "mvn clean package sonar:sonar"
                 }
             }
