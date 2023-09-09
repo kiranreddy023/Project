@@ -52,9 +52,13 @@ pipeline{
             steps{
                 withCredentials([usernamePassword(credentialsId: 'ACR', passwordVariable: 'pwd', usernameVariable: 'user')]) {
                     sh 'docker login -u ${user} -p ${pwd} kiran1993.azurecr.io'
-                    sh 'docker push kiran1993.azurecr.io/backend:latest'
-                    sh 'docker push kiran1993.azurecr.io/frontend:latest'
                 }
+            }
+            steps{
+                sh 'docker push kiran1993.azurecr.io/backend:latest'
+            }
+            steps{
+                sh 'docker push kiran1993.azurecr.io/frontend:latest'
             }
         }
     }
