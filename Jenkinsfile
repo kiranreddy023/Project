@@ -38,5 +38,15 @@ pipeline{
                 )
             }
         }
+        stage('dockerbuild'){
+            steps{
+                dir("backend"){
+                    sh 'docker build -t kiran1993.azurecr.io/backend:latest .'
+                }
+                dir("frontend"){
+                    sh 'docker build -t kiran1993.azurecr.io/frontend:latest .'
+                }
+            }
+        }
     }
 }
