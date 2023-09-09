@@ -23,6 +23,20 @@ pipeline{
                 }
             }
         }
-        
+        stage("jfrog upload"){
+            steps{
+                rtUpload(
+                    serverId: 'kiranjfrog',
+                    spec: '''{
+                        "files": [
+                            {
+                                "pattern": "**/**/*.*ar",
+                                "target": "project/"
+                            }
+                        ]
+                    }'''
+                )
+            }
+        }
     }
 }
