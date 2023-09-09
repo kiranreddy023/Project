@@ -9,11 +9,13 @@ pipeline{
                 sh 'mvn clean test'
             }
         }
+    
         stage('maven package'){
             steps{
                 sh 'mvn clean package -DskipTests=true'
             }
         }
+        '''
         stage('sonarbuild'){
             steps{
                 withSonarQubeEnv(credentialsId: 'kiransonarqube') {
@@ -36,5 +38,6 @@ pipeline{
                 )
             }
         }
+        '''
     }
 }
