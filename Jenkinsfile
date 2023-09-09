@@ -15,29 +15,6 @@ pipeline{
                 sh 'mvn clean package -DskipTests=true'
             }
         }
-        '''
-        stage('sonarbuild'){
-            steps{
-                withSonarQubeEnv(credentialsId: 'kiransonarqube') {
-                     sh 'mvn clean package sonar:sonar'
-                }
-            }
-        }
-        stage("jfrog upload"){
-            steps{
-                rtUpload(
-                    serverId: 'kiranjfrog',
-                    spec: '''{
-                        "files": [
-                            {
-                                "pattern": "**/**/*.*ar",
-                                "target": "project/"
-                            }
-                        ]
-                    }'''
-                )
-            }
-        }
-        '''
+        
     }
 }
