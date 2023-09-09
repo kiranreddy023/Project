@@ -51,7 +51,7 @@ pipeline{
         stage('docker push'){
             steps{
                 withCredentials([usernamePassword(credentialsId: 'docker', passwordVariable: 'pwd', usernameVariable: 'user')]) {
-                    sh 'docker login -u ${user} -p ${pwd}'
+                    sh 'docker login -u kiran023 -p kiraN023@'
                     sh 'docker push kiran023/backend:latest'
                     sh 'docker push kiran023/frontend:latest'
                 }
