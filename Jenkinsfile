@@ -15,6 +15,13 @@ pipeline{
                 sh 'mvn clean package -DskipTests=true'
             }
         }
+        stage("sonarqube build"){
+            steps{
+                withSonarQubeEnv('kiran') {
+                    sh "mvn clean package sonar:sonar"
+                }
+            }
+        }
         
     }
 }
