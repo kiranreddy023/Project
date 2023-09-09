@@ -1,55 +1,40 @@
-pipeline {
-        agent any
-        stages {
-            stage('build') {
-                steps {  
-                     sh 'mvn clean install -DskipTests' 
-                }
+pipeline{
+    agent any
+    tools {
+        maven 'maven-3.6.3'
+    }
+    stages{
+        stage('maven test'){
+            steps{
+                sh 'mvn clean test'
             }
-            stage('test') {
-                steps {
-                    sh 'mvn test' 
-                }
+        }
+        stage('maven package'){
+            steps{
+                sh 'mvn clean package -DskipTests=true'
             }
-            
-            stage('run') {
-                steps {  
-                    sh 'mvn clean spring-boot:run &'
-                }
-            }
-            stage('docker') {
-                steps {
-                        dir("frontend") {  
-                             sh 'docker build -t frontend:latest .'   
-                        }         
-                        dir("backend") { 
-                            sh 'docker build -t backend:latest .' 
-                        }
-                }
-            }
-            stage("docker remove") {
-                steps {
-                    echo "rm"
-                    sh "kill -9 \$(docker top backend | awk 'NR==2 {print \$2}')"
-                    sh "kill -9 \$(docker top backend | awk 'NR==2 {print \$2}')"
-                }
-            }
-            stage("docker run") {
-                steps {
-                    sh 'docker run -p 9991:8086 -d --name backend backend:latest'
-                    sh 'docker run -p 9992:8085 -d --name frontend frontend:latest'
-                }
-            }
-            stage("docker deploy") {
-                steps {
-                    sh 'curl http://localhost:9991/docs'
-                    sh 'curl http://localhost:9992'
+        }
+        stage('sonarbuild'){
+            steps{
+                withSonarQubeEnv(credentialsId: 'kiransonarqube') {
+                     sh 'mvn clean package sonar:sonar'
                 }
             }
         }
-        post{
-            always{
-                cleanWs()
+        stage("jfrog upload"){
+            steps{
+                rtUpload(
+                    serverId: 'kiranjfrog',
+                    spec: '''{
+                        "files": [
+                            {
+                                "pattern": "**/**/*.*ar",
+                                "target": "project/"
+                            }
+                        ]
+                    }'''
+                )
             }
-        }       
+        }
+    }
 }
