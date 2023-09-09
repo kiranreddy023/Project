@@ -51,7 +51,7 @@ pipeline{
         stage('docker push'){
             steps{
                 withCredentials([usernamePassword(credentialsId: 'ACR', passwordVariable: 'pwd', usernameVariable: 'user')]) {
-                    sh 'docker login -u kiran1993 -p N2vBIWO75cRpNG8Tl420IyO4oSqQohOPxPhe9BNkD8+ACRAWdlVZ  kiran1993.azurecr.io'
+                    sh 'docker login -u ${user} -p ${pwd}  kiran1993.azurecr.io'
                     sh 'docker push kiran1993.azurecr.io/backend:latest'
                     sh 'docker push kiran1993.azurecr.io/frontend:latest'
                 }
