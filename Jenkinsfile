@@ -41,19 +41,19 @@ pipeline{
         stage('dockerbuild'){
             steps{
                 dir("backend"){
-                    sh 'docker build -t kiran023/backend:latest .'
+                    sh 'docker build -t kiran1993.azurecr.io/backend:latest .'
                 }
                 dir("frontend"){
-                    sh 'docker build -t kiran023/frontend:latest .'
+                    sh 'docker build -t kiran1993.azurecr.io/frontend:latest .'
                 }
             }
         }
         stage('docker push'){
             steps{
-                withCredentials([usernamePassword(credentialsId: 'docker', passwordVariable: 'pwd', usernameVariable: 'user')]) {
-                    sh 'docker login -u kiran023 -p kiraN023@'
-                    sh 'docker push kiran023/backend:latest'
-                    sh 'docker push kiran023/frontend:latest'
+                withCredentials([usernamePassword(credentialsId: 'ACR', passwordVariable: 'pwd', usernameVariable: 'user')]) {
+                    sh 'docker login -u ${user} -p ${pwd} kiran1993.azurecr.io'
+                    sh 'docker push kiran1993.azurecr.io/backend:latest'
+                    sh 'docker push kiran1993.azurecr.io/frontend:latest'
                 }
             }
         }
