@@ -23,5 +23,8 @@ spec:
         name: frontend
         ports:
         - containerPort: 8085
+        env:
+           - name: BACKEND
+             value: "http://backend:8086"
         resources: {}
 status: {}
