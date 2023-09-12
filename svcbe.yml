@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: "2023-09-11T17:53:09Z"
+  labels:
+    app: backend
+  name: backend
+  namespace: kiran
+  resourceVersion: "6573"
+  uid: 3391837d-18e3-45dd-9028-115af0c51309
+spec:
+  allocateLoadBalancerNodePorts: true
+  clusterIP: 10.0.79.81
+  clusterIPs:
+  - 10.0.79.81
+  externalTrafficPolicy: Cluster
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - name: 8086-8086
+    nodePort: 31270
+    port: 8086
+    protocol: TCP
+    targetPort: 8086
+  selector:
+    app: backend
+  sessionAffinity: None
+  type: LoadBalancer
+status:
+  loadBalancer: {}
