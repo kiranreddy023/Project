@@ -90,6 +90,7 @@ pipeline{
                 }
             }
         }
+        '''
         stage('test-deployed'){
             steps{
                 
@@ -102,6 +103,7 @@ pipeline{
                 sh 'sleep 30'
             }
         }
+        '''
     }
     post {
         always {
