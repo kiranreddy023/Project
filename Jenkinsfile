@@ -4,6 +4,15 @@ pipeline{
         maven 'maven-3.6.3'
         
     }
+    environment{
+        imageNameBackend = "kiran023/backend"
+        imageNameFrontend = "kiran023/frontend"
+        registryUrl = "registry.hub.docker.com"
+        registryCreds = 'docker'
+        dockerImageBackend = ''
+        dockerImageFrontend = ''
+    }
+
     stages{
         stage('maven test'){
             steps{
@@ -40,33 +49,42 @@ pipeline{
         }
         stage('dockerbuild'){
             steps{
-                dir("backend"){
-                    sh 'docker build -t kiran023/backend:latest .'
-                }
-                dir("frontend"){
-                    sh 'docker build -t kiran023/frontend:latest .'
+                script{
+                    dir("backend"){
+                        dockerImageBackend = docker.build imageNameBackend
+                    }
+                    dir("frontend"){
+                        dockerImageFrontend = docker.build imageNameFrontend
+                    }
                 }
             }
         }
         stage('docker push'){
             steps{
-                withCredentials([usernamePassword(credentialsId: 'docker', passwordVariable: 'pwd', usernameVariable: 'user')]) {
-                    sh 'docker login -u kiran023 -p kiraN023@'
-                    sh 'docker push kiran023/backend:latest'
-                    sh 'docker push kiran023/frontend:latest'
+                script{
+                    docker.withRegistry("https://${registryUrl}", registryCreds){
+                        dockerImageBackend.push()
+                        dockerImageFrontend.push()                        
+                    }
                 }
             }
         }
         stage('k8s-deploy'){
             steps{
                 withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'k8sconfig', namespace: '', restrictKubeConfigAccess: false, serverUrl: '') {
-                        //sh 'kubectl apply -f ns.yml'
+                        sh 'kubectl apply -f ns.yml'
                         sh 'kubectl apply -f deploybackend.yml'
                         sh 'kubectl apply -f deployfrontend.yml'
                         sh 'kubectl apply -f svcbe.yml'
                         sh 'kubectl apply -f svcfe.yml'
                 }
             }
+        }
+    }
+    post {
+        always {
+            // One or more steps need to be included within each condition's block.
+            cleanWs()
         }
     }
 }
