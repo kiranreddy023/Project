@@ -17,7 +17,6 @@ spec:
   ipFamilyPolicy: SingleStack
   ports:
   - name: 8085-8085
-    nodePort: 30762
     port: 8085
     protocol: TCP
     targetPort: 8085

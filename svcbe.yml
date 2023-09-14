@@ -17,7 +17,6 @@ spec:
   ipFamilyPolicy: SingleStack
   ports:
   - name: 8086-8086
-    nodePort: 31270
     port: 8086
     protocol: TCP
     targetPort: 8086
