@@ -21,5 +21,11 @@ spec:
         name: backend
         ports:
         - containerPort: 8086
-        resources: {}
+        resources:
+          requests:
+            memory: 256Mi
+            cpu: 250m
+          limits:
+            memory: 512Mi
+            cpu: 500m
 status: {}

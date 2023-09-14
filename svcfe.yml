@@ -1,17 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  creationTimestamp: "2023-09-11T17:53:35Z"
+  
   labels:
     app: frontend
   name: frontend
   namespace: kiran
-  resourceVersion: "6707"
-  uid: fffe6b63-d4c0-4080-86f4-e0b51fe89d45
+ 
 spec:
-  allocateLoadBalancerNodePorts: true
-  externalTrafficPolicy: Cluster
-  internalTrafficPolicy: Cluster
+ 
   ipFamilies:
   - IPv4
   ipFamilyPolicy: SingleStack
