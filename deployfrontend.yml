@@ -27,7 +27,6 @@ spec:
            - name: BACKEND
              value: "http://backend:8086"
         resources:
-          resources:
           requests:
             memory: 256Mi
             cpu: 250m
