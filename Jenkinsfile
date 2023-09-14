@@ -90,20 +90,6 @@ pipeline{
                 }
             }
         }
-        '''
-        stage('test-deployed'){
-            steps{
-                
-                sh  "'curl "${kubectl get svc -A -o wide | awk '/frontend/ {print $5}'}":8085'"
-
-                sh 'sleep 30'
-
-                
-                sh  "'curl "${kubectl get svc -A -o wide | awk '/backend/ {print $5}'}":8086/docs'"
-                sh 'sleep 30'
-            }
-        }
-        '''
     }
     post {
         always {
