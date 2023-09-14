@@ -82,7 +82,7 @@ pipeline{
         stage('k8s-details'){
             steps{
                 withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'k8sconfig', namespace: '', restrictKubeConfigAccess: false, serverUrl: '') {
-                        sh 'kubectl get svc -o wide'
+                        sh 'kubectl get svc -n kiran -o wide'
                 }
             }
         }
