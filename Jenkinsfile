@@ -86,6 +86,15 @@ pipeline{
                 }
             }
         }
+        stage('test-deployed'){
+            steps{
+                
+                sh  'curl 20.213.252.174:8085'
+
+                
+                sh  'curl 20.213.248.175:8086/docs'
+            }
+        }
     }
     post {
         always {
