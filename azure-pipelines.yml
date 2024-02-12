@@ -34,6 +34,7 @@ stages:
                   publishJUnitResults: true
                   testResultsFiles: '**/surefire-reports/TEST-*.xml'
                   mavenVersionOption: 'Default'
+                  javaHomeOption: 'JDKVersion'
                   mavenAuthenticateFeed: false
                   effectivePomSkip: false
                   sonarQubeRunAnalysis: true
