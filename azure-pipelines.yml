@@ -30,7 +30,7 @@ stages:
             displayName: 'Maven Build'
             inputs:
                   mavenPomFile: 'pom.xml'
-                  goals: 'install'
+                  goals: 'install sonar:sonar'
                   publishJUnitResults: true
                   testResultsFiles: '**/surefire-reports/TEST-*.xml'
                   mavenVersionOption: 'Default'
