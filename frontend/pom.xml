@@ -7,7 +7,7 @@
     <packaging>jar</packaging>
     <version>1.0-RELEASE</version>
     <parent>
-        <groupId>adi</groupId>
+        <groupId>kiran</groupId>
         <artifactId>Project</artifactId>
         <version>1.0-RELEASE</version>
     </parent>
@@ -58,6 +58,13 @@
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.sonarsource.scanner.maven/sonar-maven-plugin -->
+        <dependency>
+            <groupId>org.sonarsource.scanner.maven</groupId>
+            <artifactId>sonar-maven-plugin</artifactId>
+            <version>3.10.0.2594</version>
+        </dependency>
+
     </dependencies>
     <build>
         <plugins>
