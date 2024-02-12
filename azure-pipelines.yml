@@ -33,3 +33,8 @@ stages:
               goals: 'install'
               publishJUnitResults: true
               testResultsFiles: '**/surefire-reports/TEST-**.xml'
+
+          - task: SonarQubeAnalyze@5
+            displayName: 'Sonar Analyse'
+              inputs:
+                jdkversion: 'JAVA_HOME'
