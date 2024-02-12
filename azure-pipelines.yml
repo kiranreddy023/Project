@@ -26,10 +26,10 @@ stages:
                 sonar.projectKey=githubconnec_githubconnec_472edd1d-6d19-47d2-9893-e7092aaf8408
                 sonar.projectName=githinconnec
               
-          - task: 'JavaToolInstaller@0'
-            displayName: 'Java Installer'
+          - task: 'Maven@4'
+            displayName: 'Maven Build'
             inputs:
-              versionSpec: '11'
-              jdkArchitectureOption: 'x86'
-              jdkSourceOption: 'PreInstalled'
-
+              mavenPomFile: 'pom.xml'
+              goals: 'install sonar:sonar'
+              publishJUnitResults: true
+              testResultsFiles: '**/surefire-reports/TEST-**.xml'
