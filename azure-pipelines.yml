@@ -25,4 +25,11 @@ stages:
               extraProperties: |
                 sonar.projectKey=githubconnec_githubconnec_472edd1d-6d19-47d2-9893-e7092aaf8408
                 sonar.projectName=githinconnec
+              
+          - task: 'JavaInstaller@0'
+            displayName: 'Java Installer'
+            inputs:
+              versionSpec: '17'
+              jdkArchitectureOption: 'x64'
+              jdkSourceOption: 'Pre-installed'
 
