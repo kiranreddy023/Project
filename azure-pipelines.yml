@@ -38,3 +38,8 @@ stages:
             displayName: 'Sonar Analyse'
             inputs:
                 jdkversion: 'JAVA_HOME'
+
+          - task: SonarQubePublish@5
+            displayName: 'sonarqube publish'
+            inputs:
+              pollingTimeoutSec: '300'
