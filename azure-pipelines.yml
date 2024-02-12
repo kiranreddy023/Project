@@ -10,29 +10,19 @@ trigger:
 pool:
   name: 'Default'
 
-steps:
-- task: Maven@3
-  inputs:
-    mavenPomFile: 'pom.xml'
-    publishJUnitResults: true
-    testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    goals: 'package'
-  
-- task: SonarQubePrepare@5
-  inputs:
-    SonarQube: 'sonarqube'
-    scannerMode: 'Other'
-    extraProperties: |
-      # Additional properties that will be passed to the scanner, 
-      # Put one key=value per line, example:
-      # sonar.exclusions=**/*.bin
-      sonar.projectKey=githubconnec_githubconnec_108a4ff5-af1f-4f19-ad24-7159328afc2a
-      sonar.projectName=githubconnec
+stages:
+  - stage: buildAndAnalyse
+    displayName: 'Maven Build and Sonarqube Analysis'
+    jobs: 
+      - job: 'Build'
+        displayName: 'Build'
+        steps:
+          - task: 'SonarQubePrepare@5'
+            displayName: 'Sonarqube Prepare'
+            inputs:
+              Sonarqube: 'sonarqube'
+              scannerMode: 'others'
+              extraProperties: |
+                sonar.projectKey=githubconnec_githubconnec_472edd1d-6d19-47d2-9893-e7092aaf8408
+                sonar.projectName=githinconnec
 
-- task: SonarQubeAnalyze@5
-  inputs:
-    jdkversion: 'JAVA_HOME'
-
-- task: SonarQubePublish@5
-  inputs:
-    pollingTimeoutSec: '300'
