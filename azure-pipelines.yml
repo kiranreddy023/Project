@@ -6,6 +6,7 @@
 
 trigger:
 - main
+- develop
 
 pool:
   name: 'Default'
@@ -27,22 +28,22 @@ stages:
               cliProjectName: 'githubconnec'
               cliSources: '.'
               
-              
+          - task: 'JavaToolInstaller@0'
+            displayName: 'Java Tool Install'
+            inputs:
+              versionSpec: '17'
+              jdkArchitectureOption: 'x64'
+              jdkSourceOption: 'PreInstalled' 
               
           - task: Maven@4
             displayName: 'Maven Build'
             inputs:
                   mavenPomFile: 'pom.xml'
-                  goals: 'install sonar:sonar'
+                  goals: 'install'
                   publishJUnitResults: true
                   testResultsFiles: '**/surefire-reports/TEST-*.xml'
-                  mavenVersionOption: 'Default'
-                  javaHomeOption: 'JDKVersion'
-                  mavenAuthenticateFeed: false
-                  effectivePomSkip: false
-                  sonarQubeRunAnalysis: true
-                  sqMavenPluginVersionChoice: 'latest'
-
+                 
+          - task: 'SonarQubeAnalyze@5'
         
 
           - task: SonarQubePublish@5
