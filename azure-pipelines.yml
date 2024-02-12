@@ -30,6 +30,6 @@ stages:
             displayName: 'Java Installer'
             inputs:
               versionSpec: '17'
-              jdkArchitectureOption: 'x64'
+              jdkArchitectureOption: 'x86'
               jdkSourceOption: 'Pre-installed'
 
