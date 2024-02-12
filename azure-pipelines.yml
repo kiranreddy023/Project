@@ -36,5 +36,5 @@ stages:
 
           - task: SonarQubeAnalyze@5
             displayName: 'Sonar Analyse'
-              inputs:
+            inputs:
                 jdkversion: 'JAVA_HOME'
