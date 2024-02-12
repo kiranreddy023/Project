@@ -23,6 +23,17 @@
         <module>backend</module>
 
     </modules>
+    <build>
+  <pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.sonar</groupId>
+        <artifactId>sonar-maven-plugin</artifactId>
+        <version>2.5</version>
+      </plugin>
+    </plugins>
+  </pluginManagement>
+</build>
 
 
 </project>
