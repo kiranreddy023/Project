@@ -20,11 +20,15 @@ stages:
           - task: 'SonarQubePrepare@5'
             displayName: 'Sonarqube Prepare'
             inputs:
-              SonarQube: 'sonarqube'
+              SonarQube: 'sonar'
               scannerMode: 'Other'
               extraProperties: |
+                # Additional properties that will be passed to the scanner,
+                # Put one key=value per line, example:
+                # sonar.exclusions=**/*.bin
                 sonar.projectKey=githubconnec_githubconnec_472edd1d-6d19-47d2-9893-e7092aaf8408
-                sonar.projectName=githinconnec
+                sonar.projectName=githubconnec
+              
               
           - task: Maven@4
             displayName: 'Maven Build'
