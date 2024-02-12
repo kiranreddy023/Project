@@ -20,7 +20,7 @@ stages:
           - task: 'SonarQubePrepare@5'
             displayName: 'Sonarqube Prepare'
             inputs:
-              Sonarqube: 'sonarqube'
+              SonarQube: 'sonarqube'
               scannerMode: 'Other'
               extraProperties: |
                 sonar.projectKey=githubconnec_githubconnec_472edd1d-6d19-47d2-9893-e7092aaf8408
@@ -30,6 +30,6 @@ stages:
             displayName: 'Maven Build'
             inputs:
               mavenPomFile: 'pom.xml'
-              goals: 'install sonar:sonar'
+              goals: 'install'
               publishJUnitResults: true
               testResultsFiles: '**/surefire-reports/TEST-**.xml'
