@@ -28,12 +28,7 @@ stages:
               cliProjectName: 'githubconnec'
               cliSources: '.'
               
-          - task: 'JavaToolInstaller@0'
-            displayName: 'Java Tool Install'
-            inputs:
-              versionSpec: '17'
-              jdkArchitectureOption: 'x64'
-              jdkSourceOption: 'PreInstalled' 
+          
               
           - task: Maven@4
             displayName: 'Maven Build'
@@ -44,6 +39,8 @@ stages:
                   testResultsFiles: '**/surefire-reports/TEST-*.xml'
                  
           - task: 'SonarQubeAnalyze@5'
+            inputs:
+              jdkversion: 'JAVA_HOME'
         
 
           - task: SonarQubePublish@5
