@@ -26,18 +26,20 @@ stages:
                 sonar.projectKey=githubconnec_githubconnec_472edd1d-6d19-47d2-9893-e7092aaf8408
                 sonar.projectName=githinconnec
               
-          - task: 'Maven@4'
+          - task: Maven@4
             displayName: 'Maven Build'
             inputs:
-              mavenPomFile: 'pom.xml'
-              goals: 'install'
-              publishJUnitResults: true
-              testResultsFiles: '**/surefire-reports/TEST-**.xml'
+                  mavenPomFile: 'pom.xml'
+                  goals: 'install'
+                  publishJUnitResults: true
+                  testResultsFiles: '**/surefire-reports/TEST-*.xml'
+                  mavenVersionOption: 'Default'
+                  mavenAuthenticateFeed: false
+                  effectivePomSkip: false
+                  sonarQubeRunAnalysis: true
+                  sqMavenPluginVersionChoice: 'latest'
 
-          - task: SonarQubeAnalyze@5
-            displayName: 'Sonar Analyse'
-            inputs:
-                jdkversion: 'JAVA_HOME'
+        
 
           - task: SonarQubePublish@5
             displayName: 'sonarqube publish'
