@@ -21,7 +21,7 @@ stages:
             displayName: 'Sonarqube Prepare'
             inputs:
               Sonarqube: 'sonarqube'
-              scannerMode: 'others'
+              scannerMode: 'other'
               extraProperties: |
                 sonar.projectKey=githubconnec_githubconnec_472edd1d-6d19-47d2-9893-e7092aaf8408
                 sonar.projectName=githinconnec
