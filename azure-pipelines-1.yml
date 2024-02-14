@@ -28,6 +28,7 @@ steps:
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     sonarQubeRunAnalysis: true
+    sqMavenPluginVersionChoice: 'latest'
     
     
 
