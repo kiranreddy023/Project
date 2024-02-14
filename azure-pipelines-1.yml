@@ -19,8 +19,7 @@ steps:
       # Put one key=value per line, example:
       # sonar.exclusions=**/*.bin
       sonar.projectKey=githubconnec_githubconnec_AY2pEwJ15mEZQjsG2-X0
-      sonar.host.url=http://74.235.206.195:9000
-      sonar.login=sqp_6a3390106614107ab6deec94c8b6b2577cc2eb17
+     
   
 - task: Maven@4
   inputs:
@@ -28,12 +27,8 @@ steps:
     goals: 'clean install'
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    javaHomeOption: 'JDKVersion'
-    mavenVersionOption: 'Default'
-    mavenAuthenticateFeed: false
-    effectivePomSkip: false
     sonarQubeRunAnalysis: true
-    sqMavenPluginVersionChoice: 'latest'
+    
 
 - task: SonarQubePublish@5
   inputs:
