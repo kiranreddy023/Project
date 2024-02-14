@@ -22,25 +22,5 @@
         <module>frontend</module>
         <module>backend</module>
     </modules>
-
-    
-
-  <dependencies>
-<dependency>
-            <groupId>org.sonarsource.scanner.maven</groupId>
-            <artifactId>sonar-maven-plugin</artifactId>
-            <version>3.10.0.2594</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.codehaus.sonar.plugins/sonar-l10n-en-plugin -->
-<dependency>
-    <groupId>org.codehaus.sonar.plugins</groupId>
-    <artifactId>sonar-l10n-en-plugin</artifactId>
-    <version>4.5.1</version>
-    <scope>test</scope>
-</dependency>
-
-
-    </dependencies>
-
     
 </project>

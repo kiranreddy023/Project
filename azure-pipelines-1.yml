@@ -29,6 +29,7 @@ steps:
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     sonarQubeRunAnalysis: true
     
+    
 
 - task: SonarQubePublish@5
   inputs:
