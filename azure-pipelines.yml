@@ -38,14 +38,7 @@ stages:
                   publishJUnitResults: true
                   testResultsFiles: '**/surefire-reports/TEST-*.xml'
                  
-          - task: 'SonarQubeAnalyze@5'
-            inputs:
-              jdkversion: 'JAVA_HOME'
-              SonarQube: 'sonar'
-              scannerMode: 'CLI'
-              configMode: 'manual'
-              cliProjectKey: 'githubconnec_githubconnec_472edd1d-6d19-47d2-9893-e7092aaf8408'
-              cliProjectName: 'githubconnec'
+          
         
 
           - task: SonarQubePublish@5
