@@ -40,7 +40,7 @@ pipeline{
                         "files": [
                             {
                                 "pattern": "**/**/*.*ar",
-                                "target": "project/"
+                                "target": "example-repo-local/"
                             }
                         ]
                     }'''
