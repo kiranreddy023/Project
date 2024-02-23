@@ -9,9 +9,6 @@ trigger:
 pool:
   name: 'Default'
 
-variables:
-  options: '-Dsonar.login=sqp_6a3390106614107ab6deec94c8b6b2577cc2eb17'
-
 steps:
 - task: SonarQubePrepare@5
   inputs:
@@ -28,7 +25,6 @@ steps:
   inputs:
     mavenPomFile: 'pom.xml'
     goals: 'clean install'
-    options: '$(Parameters.options)'
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     sonarQubeRunAnalysis: true
